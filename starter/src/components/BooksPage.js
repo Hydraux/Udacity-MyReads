@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getAll } from "../BooksAPI";
 import Bookshelf from "./Bookshelf";
 
-function BooksPage({ showSearchPage, setShowSearchpage }) {
+function BooksPage() {
   const [books, setBooks] = useState([]);
 
   const handleShelfChange = (book, newShelf) => {
@@ -58,7 +59,7 @@ function BooksPage({ showSearchPage, setShowSearchpage }) {
         </div>
       </div>
       <div className="open-search">
-        <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
+        <Link to={"/search"}>Add a book</Link>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ function Book({ book, handleShelfChange }) {
       <div className="book-title">{book.title}</div>
 
       <div className="book-authors">
-        <span>{book.authors.map((author) => author)}</span>
+        <span>{book.authors && book.authors.map((author) => author)}</span>
       </div>
     </div>
   );

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAll } from "../BooksAPI";
+import { getAll, update } from "../BooksAPI";
 import Bookshelf from "./Bookshelf";
 
 function BooksPage() {
   const [books, setBooks] = useState([]);
 
   const handleShelfChange = (book, newShelf) => {
+    update(book,newShelf);
     setBooks((prevBooks) =>
       prevBooks.map((b) => {
         if (b.id === book.id) {

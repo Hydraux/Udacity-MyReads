@@ -13,13 +13,17 @@ function SearchPage() {
 
   /**
    * Handles state changes as the value of the search field is changed.
-   * Will only be called if the component is currently mounted and there is a non-empty query in the search field.
+   * The API will only be called if the component is currently mounted and there is a non-empty query in the search field.
    */
   useEffect(() => {
     let mounted = true;
 
-    if (mounted && query !== "") {
-      search(query, 2).then((res) => setBooks(res));
+    if (query === "") {
+      setBooks([]);
+    } else {
+      if (mounted) {
+        search(query, 2).then((res) => setBooks(res));
+      }
     }
 
     return () => {

@@ -6,7 +6,8 @@ import BookshelfChanger from "./BookshelfChanger";
  * @description Parses data from a book object and inserts it into a component
  * @returns {JSX.Element} Component containing the cover, title, and authors of a book
  */
-function Book({ book }) {
+function Book({ book, handleShelfChange }) {
+
   return (
     <div className="book">
       <div className="book-top">
@@ -18,7 +19,7 @@ function Book({ book }) {
             backgroundImage: "url(" + book.imageLinks.thumbnail + ")",
           }}
         ></div>
-        <BookshelfChanger />
+        <BookshelfChanger shelf={book.shelf} setShelf={(shelf)=>handleShelfChange(book,shelf)}/>
       </div>
       <div className="book-title">{book.title}</div>
 
@@ -28,4 +29,5 @@ function Book({ book }) {
     </div>
   );
 }
+
 export default Book;

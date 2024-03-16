@@ -1,7 +1,8 @@
-function BookshelfChanger() {
+
+function BookshelfChanger({shelf, setShelf}) {
   return (
     <div className="book-shelf-changer">
-      <select>
+      <select defaultValue={shelf} onChange={(e)=>setShelf(e.target.value)}>
         <option value="none" disabled>
           Move to...
         </option>

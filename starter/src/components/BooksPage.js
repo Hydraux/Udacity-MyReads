@@ -3,8 +3,19 @@ import { getAll } from "../BooksAPI";
 import Bookshelf from "./Bookshelf";
 
 function BooksPage({ showSearchPage, setShowSearchpage }) {
-    const [books,setBooks] = useState([]);
-    console.log(books);
+  const [books, setBooks] = useState([]);
+
+  const handleShelfChange = (book, newShelf) => {
+    setBooks((prevBooks) =>
+      prevBooks.map((b) => {
+        if (b.id === book.id) {
+          return { ...b, shelf: newShelf };
+        }
+        return b;
+      })
+    );
+  };
+
   /**
    * Grabs all books from the API and sets the state of this component.
    * We will not make the API call again if the component is already mounted.
@@ -14,7 +25,7 @@ function BooksPage({ showSearchPage, setShowSearchpage }) {
     let mounted = true;
 
     if (mounted) {
-        getAll().then((res) => setBooks(res));
+      getAll().then((res) => setBooks(res));
     }
 
     return () => {
@@ -29,9 +40,21 @@ function BooksPage({ showSearchPage, setShowSearchpage }) {
       </div>
       <div className="list-books-content">
         <div>
-          <Bookshelf title={'Currently Reading'} books={books.filter((book)=>book.shelf === 'currentlyReading')}/>
-          <Bookshelf title={'Want to Read'} books={books.filter((book)=>book.shelf === 'wantToRead')}/>
-          <Bookshelf title={'Read'} books={books.filter((book)=>book.shelf === 'read')}/>
+          <Bookshelf
+            handleShelfChange={handleShelfChange}
+            title={"Currently Reading"}
+            books={books.filter((book) => book.shelf === "currentlyReading")}
+          />
+          <Bookshelf
+            handleShelfChange={handleShelfChange}
+            title={"Want to Read"}
+            books={books.filter((book) => book.shelf === "wantToRead")}
+          />
+          <Bookshelf
+            handleShelfChange={handleShelfChange}
+            title={"Read"}
+            books={books.filter((book) => book.shelf === "read")}
+          />
         </div>
       </div>
       <div className="open-search">

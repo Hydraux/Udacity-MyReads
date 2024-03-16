@@ -1,14 +1,35 @@
+import { useEffect, useState } from "react";
+import { getAll } from "../BooksAPI";
 import Book from "./Book";
 
 function Bookshelf() {
+  const [books, setBooks] = useState([]);
+
+  console.log(books);
+
+  /**
+   * Grabs all books from the API and sets the state of this component.
+   * We will not make the API call again if the component is already mounted.
+   * When the cleanup function is called, the mounted flag is toggled so we are ready to make the API call again.
+   **/
+  useEffect(() => {
+    let mounted = true;
+
+    if (mounted) {
+        getAll().then((res) => setBooks(res));
+    }
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">Currently Reading</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          <li>
-            <Book/>
-          </li>
+          {books.map((book)=><li key={book.id}><Book book={book} /></li>)}
           <li>
             <div className="book">
               <div className="book-top">

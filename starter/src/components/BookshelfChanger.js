@@ -1,14 +1,13 @@
-
 /**
- * 
- * @shelf - which shelf the book is currently on. 
+ *
+ * @shelf - which shelf the book is currently on.
  * @setShelf - a callback for modifying the shelf a book is on.
- * @returns 
+ * @returns
  */
-function BookshelfChanger({shelf, setShelf}) {
+function BookshelfChanger({ shelf, setShelf }) {
   return (
     <div className="book-shelf-changer">
-      <select defaultValue={shelf} onChange={(e)=>setShelf(e.target.value)}>
+      <select defaultValue={shelf} onChange={(e) => setShelf(e.target.value)}>
         <option value="none" disabled>
           Move to...
         </option>

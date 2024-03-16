@@ -3,20 +3,18 @@ import { Link } from "react-router-dom";
 import { search } from "../BooksAPI";
 import Book from "./Book";
 
-
 /**
- * 
+ *
  * @returns {JSX.Element} A page with a search bar. The search bar queries a list of books using https://reactnd-books-api.udacity.com
  */
 function SearchPage() {
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState("");
 
-
-/**
- * Handles state changes as the value of the search field is changed.
- * Will only be called if the component is currently mounted and there is a non-empty query in the search field. 
- */
+  /**
+   * Handles state changes as the value of the search field is changed.
+   * Will only be called if the component is currently mounted and there is a non-empty query in the search field.
+   */
   useEffect(() => {
     let mounted = true;
 
@@ -51,9 +49,7 @@ function SearchPage() {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {books.length  > 0 && books.map((book) => (
-            <Book book={book} />
-          ))}
+          {books.length > 0 && books.map((book) => <Book book={book} />)}
         </ol>
       </div>
     </div>

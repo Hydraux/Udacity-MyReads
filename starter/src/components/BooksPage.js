@@ -4,7 +4,7 @@ import { getAll, update } from "../BooksAPI";
 import Bookshelf from "./Bookshelf";
 
 /**
- * @description Contains 3 shelves to store books in. 
+ * @description Contains 3 shelves to store books in.
  * Loads books from https://reactnd-books-api.udacity.com.
  * @returns {JSX.Element} BookPage
  */
@@ -12,9 +12,9 @@ function BooksPage() {
   const [books, setBooks] = useState([]);
 
   /// Updates a book's entry in the database with a new shelf.
-  /// Modifies the state such that it reflects the modified shelf.
+  /// Modifies the state such that it reflects the modified shelf.F
   const handleShelfChange = (book, newShelf) => {
-    update(book,newShelf);
+    update(book, newShelf);
     setBooks((prevBooks) =>
       prevBooks.map((b) => {
         if (b.id === book.id) {

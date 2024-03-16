@@ -8,7 +8,9 @@ function BooksPage({ showSearchPage, setShowSearchpage }) {
       </div>
       <div className="list-books-content">
         <div>
-          <Bookshelf/>
+          //TODO: Specify props after extraction of components
+          <Bookshelf />
+          //TODO: Replace with extracted component
           <div className="bookshelf">
             <h2 className="bookshelf-title">Want to Read</h2>
             <div className="bookshelf-books">
@@ -78,6 +80,7 @@ function BooksPage({ showSearchPage, setShowSearchpage }) {
               </ol>
             </div>
           </div>
+          //TODO: Replace with extracted component
           <div className="bookshelf">
             <h2 className="bookshelf-title">Read</h2>
             <div className="bookshelf-books">

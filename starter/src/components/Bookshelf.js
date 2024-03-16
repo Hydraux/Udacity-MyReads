@@ -1,5 +1,12 @@
 import Book from "./Book";
 
+/**
+ * 
+ * @books An array of books retrieved from https://reactnd-books-api.udacity.com
+ * @title A title for the bookshelf. Displays in the upper left of the component
+ * @handleShelfChange handles updating state and database when a book is moved to a different shelf.
+ * @returns {JSX.Element} a div containing a horizontal list of book components
+ */
 function Bookshelf({books, title, handleShelfChange}) {
   return (
     <div className="bookshelf">

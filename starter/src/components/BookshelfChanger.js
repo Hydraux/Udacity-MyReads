@@ -1,4 +1,10 @@
 
+/**
+ * 
+ * @shelf - which shelf the book is currently on. 
+ * @setShelf - a callback for modifying the shelf a book is on.
+ * @returns 
+ */
 function BookshelfChanger({shelf, setShelf}) {
   return (
     <div className="book-shelf-changer">

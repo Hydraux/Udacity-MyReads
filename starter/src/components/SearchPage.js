@@ -7,22 +7,32 @@ import Book from "./Book";
  *
  * @returns {JSX.Element} A page with a search bar. The search bar queries a list of books using https://reactnd-books-api.udacity.com
  */
-function SearchPage({handleShelfChange}) {
-  const [books, setBooks] = useState([]);
+function SearchPage({handleShelfChange, books}) {
+  const [queryBooks, setBooks] = useState([]);
   const [query, setQuery] = useState("");
 
   /**
    * Handles state changes as the value of the search field is changed.
    * The API will only be called if the component is currently mounted and there is a non-empty query in the search field.
    */
-  useEffect(() => {
+  useEffect(async () => {
     let mounted = true;
 
     if (query === "") {
       setBooks([]);
     } else {
       if (mounted) {
-        search(query, 2).then((res) => setBooks(res));
+        let res = await search(query, 2);
+        res.map((book) => {
+            let b = books.find((b)=> b.id === book.id);
+            if(b){
+                console.log("book is on shelf")
+                book.shelf = b.shelf;
+            }
+            return book;
+        })
+
+        setBooks(res);
       }
     }
 
@@ -53,7 +63,7 @@ function SearchPage({handleShelfChange}) {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {books.length > 0 && books.map((book) => <Book book={book} handleShelfChange={handleShelfChange}/>)}
+          {books.length > 0 && queryBooks.map((book) => <Book book={book} handleShelfChange={handleShelfChange}/>)}
         </ol>
       </div>
     </div>

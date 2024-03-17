@@ -66,7 +66,7 @@ function App() {
       />
       <Route
         path="/search"
-        element={<SearchPage handleShelfChange={handleShelfChange} />}
+        element={<SearchPage handleShelfChange={handleShelfChange} books={books}/>}
       />
     </Routes>
   );

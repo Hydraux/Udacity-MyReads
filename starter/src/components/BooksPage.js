@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAll, update } from "../BooksAPI";
+import { getAll } from "../BooksAPI";
 import Bookshelf from "./Bookshelf";
 
 /**
@@ -8,22 +8,10 @@ import Bookshelf from "./Bookshelf";
  * Loads books from https://reactnd-books-api.udacity.com.
  * @returns {JSX.Element} BookPage
  */
-function BooksPage() {
-  const [books, setBooks] = useState([]);
+function BooksPage({handleShelfChange, setBooks, books}) {
+  
 
-  /// Updates a book's entry in the database with a new shelf.
-  /// Modifies the state such that it reflects the modified shelf.F
-  const handleShelfChange = (book, newShelf) => {
-    update(book, newShelf);
-    setBooks((prevBooks) =>
-      prevBooks.map((b) => {
-        if (b.id === book.id) {
-          return { ...b, shelf: newShelf };
-        }
-        return b;
-      })
-    );
-  };
+
 
   /**
    * Grabs all books from the API and sets the state of this component.

@@ -7,7 +7,7 @@ import Book from "./Book";
  *
  * @returns {JSX.Element} A page with a search bar. The search bar queries a list of books using https://reactnd-books-api.udacity.com
  */
-function SearchPage() {
+function SearchPage({handleShelfChange}) {
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState("");
 
@@ -53,7 +53,7 @@ function SearchPage() {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {books.length > 0 && books.map((book) => <Book book={book} />)}
+          {books.length > 0 && books.map((book) => <Book book={book} handleShelfChange={handleShelfChange}/>)}
         </ol>
       </div>
     </div>

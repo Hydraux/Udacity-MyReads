@@ -69,7 +69,7 @@ function SearchPage({handleShelfChange, books}) {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {books.length > 0 && queryBooks.map((book) => <Book book={book} handleShelfChange={handleShelfChange}/>)}
+          {books.length > 0 && queryBooks.map((book) => <Book key={book.id} book={book} handleShelfChange={handleShelfChange}/>)}
         </ol>
       </div>
     </div>

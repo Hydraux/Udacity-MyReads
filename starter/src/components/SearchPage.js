@@ -22,8 +22,12 @@ function SearchPage({handleShelfChange, books}) {
       setBooks([]);
     } else {
       if (mounted) {
-        let res = await search(query, 2);
-
+        let res = await search(query, 2)
+        console.log(res);
+        if(res.error){
+            setBooks([]);
+            return;
+        }
         /// To ensure the state of the book change menu relfects our current book shelves, we need to check if any of our query results already exist on our list and update their current shelf as such.
         res.map((book) => {
             let b = books.find((b)=> b.id === book.id);

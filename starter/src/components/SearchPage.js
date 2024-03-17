@@ -7,7 +7,7 @@ import Book from "./Book";
  *
  * @returns {JSX.Element} A page with a search bar. The search bar queries a list of books using https://reactnd-books-api.udacity.com
  */
-function SearchPage({handleShelfChange, books}) {
+function SearchPage({ handleShelfChange, books }) {
   const [queryBooks, setBooks] = useState([]);
   const [query, setQuery] = useState("");
 
@@ -22,21 +22,19 @@ function SearchPage({handleShelfChange, books}) {
       setBooks([]);
     } else {
       if (mounted) {
-        let res = await search(query, 2)
-        console.log(res);
-        if(res.error){
-            setBooks([]);
-            return;
+        let res = await search(query, 2);
+        if (res.error) {
+          setBooks([]);
+          return;
         }
         /// To ensure the state of the book change menu relfects our current book shelves, we need to check if any of our query results already exist on our list and update their current shelf as such.
         res.map((book) => {
-            let b = books.find((b)=> b.id === book.id);
-            if(b){
-                console.log("book is on shelf")
-                book.shelf = b.shelf;
-            }
-            return book;
-        })
+          let b = books.find((b) => b.id === book.id);
+          if (b) {
+            book.shelf = b.shelf;
+          }
+          return book;
+        });
 
         setBooks(res);
       }
@@ -49,7 +47,6 @@ function SearchPage({handleShelfChange, books}) {
 
   const handleChange = (event) => {
     setQuery(event.target.value);
-    console.log(query);
   };
 
   return (
@@ -69,7 +66,14 @@ function SearchPage({handleShelfChange, books}) {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {books.length > 0 && queryBooks.map((book) => <Book key={book.id} book={book} handleShelfChange={handleShelfChange}/>)}
+          {books.length > 0 &&
+            queryBooks.map((book) => (
+              <Book
+                key={book.id}
+                book={book}
+                handleShelfChange={handleShelfChange}
+              />
+            ))}
         </ol>
       </div>
     </div>

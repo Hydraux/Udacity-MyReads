@@ -10,13 +10,9 @@ function App() {
   /// Updates a book's entry in the database with a new shelf.
   /// Modifies the state such that it reflects the modified shelf.
   const handleShelfChange = async (book, newShelf) => {
-    console.log("handleShelfChange called in App.js");
-    console.log(books);
     // update the book's shelf in the database
     let res = await update(book, newShelf);
-    console.log(res);
 
-    console.log(book.shelf);
     if (book.shelf !== undefined) {
       // update the state of the books array
       setBooks((prevBooks) =>
@@ -31,11 +27,8 @@ function App() {
     }
     else{
       book.shelf = newShelf;
-      console.log("no book found, adding to list")
       setBooks(books.concat([book]));
     }
-    console.log("books state after update:");
-    console.log(books);
   };
 
   /**
@@ -44,7 +37,6 @@ function App() {
    * When the cleanup function is called, the mounted flag is toggled so we are ready to make the API call again.
    **/
   useEffect(() => {
-    console.log("fetch API");
     let mounted = true;
 
     if (mounted) {

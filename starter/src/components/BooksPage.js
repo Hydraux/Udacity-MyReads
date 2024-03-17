@@ -7,8 +7,6 @@ import Bookshelf from "./Bookshelf";
  * @returns {JSX.Element} BookPage
  */
 function BooksPage({ handleShelfChange, books }) {
-    console.log("mounted BooksPage with books... " );
-    console.log(books);
     
   return (
     <div className="list-books">
